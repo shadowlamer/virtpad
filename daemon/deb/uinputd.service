@@ -1,0 +1,17 @@
+[Unit]
+Description=Translates uinput messages via UDP broadcast
+StartLimitInterval=0
+After=uinputd.service
+Requires=uinputd.service
+PartOf=uinputd.service
+
+
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=root
+Group=root
+ExecStart=/usr/bin/uinputd
+[Install]
+WantedBy=multi-user.target
