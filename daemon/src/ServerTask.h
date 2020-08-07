@@ -49,6 +49,21 @@ private:
         .name = SERVER_TASK_ID,
         .ff_effects_max = 0,
     };
+    vector<short int> allowed_keys = {
+        BTN_LEFT,
+        BTN_RIGHT,
+        BTN_MIDDLE,
+        KEY_LEFT,
+        KEY_RIGHT,
+        KEY_UP,
+        KEY_DOWN,
+        KEY_VOLUMEUP,
+        KEY_VOLUMEDOWN,
+        KEY_BACKSPACE,
+        KEY_ENTER,
+        KEY_PLAY,
+        KEY_STOP
+    };
 };
 
 #endif //UINPUTD_SERVERTASK_H

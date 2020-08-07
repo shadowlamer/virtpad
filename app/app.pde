@@ -7,6 +7,7 @@ private final String multicastGroup = "224.0.0.178";
 private final int udpPort = 1514;
 
 private UDP udptx;
+private UI ui;
 
 private int mx;
 private int my;
@@ -21,12 +22,13 @@ void setup()
 {
   fullScreen(P2D);
   udptx = new UDP(this, udpPort, multicastGroup);
+  ui = new UI();
 }
 
 
 void draw()
 {
-  background(0);
+  ui.draw();
 }
 
 
@@ -49,9 +51,10 @@ void touchMoved() {
 void touchEnded() { 
   touchMoved();
   if (!moved) {
-    udptx.send(new Event(Event.EV_KEY, Event.BTN_LEFT, 1).buffer());
+    short k = ui.getKey();
+    udptx.send(new Event(Event.EV_KEY, k, 1).buffer());
     delay(10);
-    udptx.send(new Event(Event.EV_KEY, Event.BTN_LEFT, 0).buffer());  
+    udptx.send(new Event(Event.EV_KEY, k, 0).buffer());  
   }
 }
 

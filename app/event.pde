@@ -10,7 +10,17 @@ class Event {
   public static final short BTN_LEFT   = 0x110;
   public static final short BTN_RIGHT  = 0x111;
   public static final short BTN_MIDDLE = 0x112;
-  
+  public static final short KEY_LEFT = 105;
+  public static final short KEY_RIGHT = 106;
+  public static final short KEY_UP = 103;
+  public static final short KEY_DOWN = 108;
+  public static final short KEY_VOLUMEUP = 115;
+  public static final short KEY_VOLUMEDOWN = 114;
+  public static final short KEY_BACKSPACE = 14;
+  public static final short KEY_ENTER = 28;
+  public static final short KEY_PLAY = 207;
+  public static final short KEY_STOP = 128;
+ 
   private long time_sec;
   private long time_usec;
   private short type;

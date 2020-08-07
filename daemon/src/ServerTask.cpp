@@ -16,14 +16,17 @@ ServerTask::ServerTask():
   ioctl(fd, UI_SET_EVBIT, EV_REL);
   ioctl(fd, UI_SET_RELBIT, REL_X);
   ioctl(fd, UI_SET_RELBIT, REL_Y);
-  ioctl(fd, UI_SET_RELBIT, REL_Z);
+  ioctl(fd, UI_SET_RELBIT, REL_WHEEL);
+
+  //Enable key events
   ioctl(fd, UI_SET_EVBIT, EV_KEY);
-  ioctl(fd, UI_SET_KEYBIT, BTN_LEFT);
-  ioctl(fd, UI_SET_KEYBIT, BTN_RIGHT);
-  ioctl(fd, UI_SET_KEYBIT, BTN_MIDDLE);
+  for (auto key: allowed_keys) {
+    ioctl(fd, UI_SET_KEYBIT, key);
+  }
 
   ioctl(fd, UI_DEV_SETUP, &uinputd_device);
   ioctl(fd, UI_DEV_CREATE);
+
 }
 
 ServerTask::~ServerTask() {
@@ -32,10 +35,10 @@ ServerTask::~ServerTask() {
 }
 
 void ServerTask::runTask() {
-  int n;
     try {
         while (!sleep(POLL_INTERVAL)) {
           SocketAddress sender;
+          int n;
           do {
             n = sock.receiveFrom(buffer, sizeof(buffer) - 1, sender);
             if (n == sizeof(input_event)) {
