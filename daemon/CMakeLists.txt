@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 set(CMAKE_CXX_STANDARD 11)
 
 set(TARGET uinputd)
-set(TARGET_VERSION "0.0.2")
+set(TARGET_VERSION "0.0.3")
 
 project(${TARGET})
 
@@ -22,6 +22,9 @@ target_link_libraries (${TARGET} ${CMAKE_THREAD_LIBS_INIT} ${Poco_LIBRARIES})
 
 install(TARGETS ${TARGET} DESTINATION bin)
 install(FILES ${CMAKE_SOURCE_DIR}/deb/${TARGET}.service DESTINATION /lib/systemd/system)
+install(FILES ${CMAKE_SOURCE_DIR}/deb/90-${TARGET}-restart
+        PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
+        DESTINATION /etc/NetworkManager/dispatcher.d)
 
 if (NOT DEFINED PACKAGE_ARCHITECTURE)
     execute_process (

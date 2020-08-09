@@ -37,15 +37,12 @@ ServerTask::~ServerTask() {
 void ServerTask::runTask() {
     try {
         while (!sleep(POLL_INTERVAL)) {
-          SocketAddress sender;
-          int n;
-          do {
-            n = sock.receiveFrom(buffer, sizeof(buffer) - 1, sender);
-            if (n == sizeof(input_event)) {
+          while (sock.available()) {
+            if (sizeof(input_event) == sock.receiveBytes(buffer, sizeof(buffer) - 1)) {
               write(fd, buffer, sizeof(input_event));
               write(fd, &sync_event, sizeof(input_event));
             }
-          } while (n >= 0);
+          }
         }
     } catch (exception& e) {
         cerr << e.what() << endl;

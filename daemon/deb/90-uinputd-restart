@@ -1,0 +1,2 @@
+#!/bin/bash
+[ "connectivity-change" = "$2" ] && systemctl restart uinputd
