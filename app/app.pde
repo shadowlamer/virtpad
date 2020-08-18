@@ -5,6 +5,7 @@ import hypermedia.net.*;
 
 private final String multicastGroup = "224.0.0.178";
 private final int udpPort = 1514;
+private final double wheelQuotient = 0.1;
 
 private UDP udptx;
 private UI ui;
@@ -39,17 +40,18 @@ void touchStarted() {
 }
 
 void touchMoved() {
-  if (mx != mouseX || my != mouseY) {
-    moved = true;
+  moved = true;
+  if (2 == touches.length) {
+    udptx.send(new Event(Event.EV_REL, Event.REL_WHEEL, (short) Math.round((mouseY - my) * wheelQuotient)).buffer());
+  } else {
+    udptx.send(new Event(Event.EV_REL, Event.REL_X, mouseX - mx).buffer());
+    udptx.send(new Event(Event.EV_REL, Event.REL_Y, mouseY - my).buffer());
   }
-  udptx.send(new Event(Event.EV_REL, Event.REL_X, mouseX - mx).buffer());
-  udptx.send(new Event(Event.EV_REL, Event.REL_Y, mouseY - my).buffer());
   mx = mouseX;
   my = mouseY;
 }
 
 void touchEnded() { 
-  touchMoved();
   if (!moved) {
     short k = ui.getKey();
     udptx.send(new Event(Event.EV_KEY, k, 1).buffer());

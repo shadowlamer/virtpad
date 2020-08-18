@@ -62,7 +62,11 @@ private:
         KEY_BACKSPACE,
         KEY_ENTER,
         KEY_PLAY,
-        KEY_STOP
+        KEY_STOP,
+        KEY_RED,
+        KEY_GREEN,
+        KEY_YELLOW,
+        KEY_BLUE
     };
 };
 

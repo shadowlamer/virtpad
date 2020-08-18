@@ -16,7 +16,7 @@ class UI {
     }
   }
 
-  private final float keypadHeightPercent = 20;
+  private final float keypadHeightPercent = 30;
   private int buttonWidth = 0;
   private int buttonHeight = 0;
   private int maxRow = 0;
@@ -26,15 +26,20 @@ class UI {
   
   public UI() {
     background(0);
-    buttons.add(new Button(0, 0, "bkspace", "ic_keyboard_backspace", Event.KEY_BACKSPACE));
-    buttons.add(new Button(1, 0, "up", "ic_keyboard_arrow_up", Event.KEY_UP));
-    buttons.add(new Button(2, 0, "play", "ic_keyboard_return", Event.KEY_ENTER));
-    buttons.add(new Button(3, 0, "volUp", "ic_volume_up", Event.KEY_VOLUMEUP));
+    buttons.add(new Button(0, 0, "bkspace", "ic_keyboard_backspace",  Event.KEY_BACKSPACE));
+    buttons.add(new Button(1, 0, "up",      "ic_keyboard_arrow_up",   Event.KEY_UP));
+    buttons.add(new Button(2, 0, "play",    "ic_keyboard_return",     Event.KEY_ENTER));
+    buttons.add(new Button(3, 0, "volUp",   "ic_volume_up",           Event.KEY_VOLUMEUP));
 
-    buttons.add(new Button(0, 1, "left", "ic_chevron_left", Event.KEY_LEFT));
-    buttons.add(new Button(1, 1, "down", "ic_keyboard_arrow_down", Event.KEY_DOWN));
-    buttons.add(new Button(2, 1, "right", "ic_chevron_right", Event.KEY_RIGHT));
-    buttons.add(new Button(3, 1, "volDown", "ic_volume_down", Event.KEY_VOLUMEDOWN));
+    buttons.add(new Button(0, 1, "left",    "ic_chevron_left",        Event.KEY_LEFT));
+    buttons.add(new Button(1, 1, "down",    "ic_keyboard_arrow_down", Event.KEY_DOWN));
+    buttons.add(new Button(2, 1, "right",   "ic_chevron_right",       Event.KEY_RIGHT));
+    buttons.add(new Button(3, 1, "volDown", "ic_volume_down",         Event.KEY_VOLUMEDOWN));
+
+    buttons.add(new Button(0, 2, "red",     "ic_red",                 Event.KEY_RED));
+    buttons.add(new Button(1, 2, "green",   "ic_green",               Event.KEY_GREEN));
+    buttons.add(new Button(2, 2, "yelow",   "ic_yellow",              Event.KEY_YELLOW));
+    buttons.add(new Button(3, 2, "blue",    "ic_blue",                Event.KEY_BLUE));
     setupKeypad();
   }
   

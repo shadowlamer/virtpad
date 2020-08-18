@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.16)
 set(CMAKE_CXX_STANDARD 11)
 
 set(TARGET uinputd)
-set(TARGET_VERSION "0.0.3")
+set(TARGET_VERSION "0.0.5")
 
 project(${TARGET})
 
