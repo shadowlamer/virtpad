@@ -22,6 +22,7 @@ target_link_libraries (${TARGET} ${CMAKE_THREAD_LIBS_INIT} ${Poco_LIBRARIES})
 
 install(TARGETS ${TARGET} DESTINATION bin)
 install(FILES ${CMAKE_SOURCE_DIR}/deb/${TARGET}.service DESTINATION /lib/systemd/system)
+install(FILES ${CMAKE_SOURCE_DIR}/deb/90-${TARGET}.rules DESTINATION /etc/udev/rules.d)
 install(FILES ${CMAKE_SOURCE_DIR}/deb/90-${TARGET}-restart
         PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE
         DESTINATION /etc/NetworkManager/dispatcher.d)

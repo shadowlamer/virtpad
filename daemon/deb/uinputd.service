@@ -1,9 +1,7 @@
 [Unit]
 Description=Translates uinput messages via UDP broadcast
 StartLimitInterval=0
-After=uinputd.service
-Requires=uinputd.service
-PartOf=uinputd.service
+After=network.target
 
 
 [Service]

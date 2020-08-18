@@ -18,3 +18,4 @@ else
         deb-systemd-helper update-state ${SERVICE}.service >/dev/null || true
 fi
 
+udevadm trigger
