@@ -17,6 +17,8 @@ class UI {
   }
 
   private final float keypadHeightPercent = 30;
+  private final float scrollWidthPercent = 15;
+  private final float scrollCornerRadius = 50;
   private int buttonWidth = 0;
   private int buttonHeight = 0;
   private int maxRow = 0;
@@ -41,17 +43,22 @@ class UI {
     buttons.add(new Button(2, 2, "yelow",   "ic_yellow",              Event.KEY_YELLOW));
     buttons.add(new Button(3, 2, "blue",    "ic_blue",                Event.KEY_BLUE));
     setupKeypad();
+    setupScroll();
   }
-  
-  public void draw() {
-  }
-  
+    
   private int buttonX(Button b) {
     return buttonWidth * b.x;
   }
 
   private int buttonY(Button b) {
     return height - buttonHeight * (maxRow - b.y + 1);
+  }
+  
+  private void setupScroll() {
+    fill(30);
+    int scrollWidthPx=Math.round(width * scrollWidthPercent / 100);
+    int scrollHeightPx=Math.round(height * (100 - keypadHeightPercent) / 100);
+    rect(width - scrollWidthPx, 0, scrollWidthPx, scrollHeightPx, scrollCornerRadius, scrollCornerRadius, scrollCornerRadius, scrollCornerRadius);
   }
   
   private void setupKeypad() {
@@ -66,6 +73,12 @@ class UI {
     for (Button b: buttons) {
        image(loadImage(b.image + ".png"), buttonX(b) + buttonWidth / 2, buttonY(b) + buttonHeight / 2);
     }
+  }
+ 
+  public boolean isScroll() {
+    int scrollWidthPx=Math.round(width * scrollWidthPercent / 100);
+    int scrollHeightPx=Math.round(height * (100 - keypadHeightPercent) / 100);
+    return mouseX > width - scrollWidthPx && mouseY < scrollHeightPx;
   }
  
   public short getKey() {

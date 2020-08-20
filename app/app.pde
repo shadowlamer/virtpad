@@ -13,6 +13,7 @@ private UI ui;
 private int mx;
 private int my;
 private boolean moved;
+private boolean scroll;
 
 void onCreate(Bundle savedInstanceState) {
   super.onCreate(savedInstanceState);
@@ -27,9 +28,7 @@ void setup()
 }
 
 
-void draw()
-{
-  ui.draw();
+void draw() {
 }
 
 
@@ -37,11 +36,12 @@ void touchStarted() {
   mx = mouseX;
   my = mouseY;
   moved = false;
+  scroll = ui.isScroll();
 }
 
 void touchMoved() {
   moved = true;
-  if (2 == touches.length) {
+  if (scroll) {
     udptx.send(new Event(Event.EV_REL, Event.REL_WHEEL, (short) Math.round((mouseY - my) * wheelQuotient)).buffer());
   } else {
     udptx.send(new Event(Event.EV_REL, Event.REL_X, mouseX - mx).buffer());
