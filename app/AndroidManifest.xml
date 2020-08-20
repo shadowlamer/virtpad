@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="0.2" package="ru.anhot.android.virtpad">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="0.5" package="ru.anhot.android.virtpad">
     <uses-sdk android:minSdkVersion="17" android:targetSdkVersion="29"/>
     <application android:icon="@drawable/icon" android:label="Virtpad">
         <activity android:name=".MainActivity" android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
